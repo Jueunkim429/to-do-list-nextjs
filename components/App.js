@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { authService } from '../pages/fbase';
 import AppRouter from './Router';
-import Todo from './Todo';
 
 function App() {
   const [init, setInit]=useState(false);

@@ -4,7 +4,7 @@ import { dbService} from '../pages/fbase';
 import { useState } from 'react';
 
 export default function Item({nweetObj, isOwner  }) {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState("");
   const [newNweet, setNewNweet] = useState(nweetObj.text);
   const checkTodo = async(event) => {
     setChecked(!checked);
