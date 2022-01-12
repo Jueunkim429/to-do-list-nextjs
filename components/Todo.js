@@ -19,7 +19,6 @@ const Todo= ({ refreshUser, userObj }) => {
         setNweets(nweetArray);
       });
   }, []);
-
     const onSubmit = async (event) => {
         event.preventDefault();
         await dbService.collection("nweets").add({

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { authService } from '../pages/fbase';
-
 import AppRouter from './Router';
 import Todo from './Todo';
 
@@ -10,6 +9,7 @@ function App() {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if(user){
+
         //setUserObj(user);
         setUserObj({
             displayName: user.displayName,
@@ -30,6 +30,7 @@ function App() {
       updateProfile: (args) => user.updateProfile(args),
     });
   };
+
 
   return (
   <>
