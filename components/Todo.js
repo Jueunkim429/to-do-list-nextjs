@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import formlist from '../styles/todo.module.css'
 import Image from 'next/image'
 import Item from "./Item";
-import { useHistory } from 'react-router-dom';
+import Router from "next/router";
 import { authService, dbService } from "../pages/fbase"
 
 const Todo= ({ refreshUser, userObj }) => {
-    const history = useHistory();
+    //const history = useHistory();
     const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
@@ -39,7 +39,7 @@ const Todo= ({ refreshUser, userObj }) => {
       
     const onLogOutClick = () => {
         authService.signOut()
-        history.push('/');
+        Router.push("/");
     };
       
     const onChange2 = (event) => {
