@@ -39,7 +39,7 @@ export default function Todo() {
       <div className={list.listbox}>
         <h1>My to do list</h1>
         <Image
-          src="/images/photo1.jpg"
+          src="/images/photo1.gif"
           height={144}
           width={144}
           alt="hi"
