@@ -1,6 +1,22 @@
-.listbox{
+.authback{
+    background-color: rgba(88, 158, 142, 0.959);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 1px;
+
+    /*border: solid red;*/
+}
+
+.authsub{
     width: 100%;
     display: flex;
+    flex-direction: column;
     margin: 1rem 0;
     padding: 1rem;
     align-items: center;
@@ -10,18 +26,19 @@
     /*border: solid red;*/
 }
 
-.listinput{
-    /*border: solid red;*/
-    width:100%;
+.email{
+    width:50%;
+    height: 50%;
     padding: 5px;
     text-align: center;
     margin: 0px;
     background-color: rgba(202, 240, 231, 0.959);
     border: solid rgba(202, 240, 231, 0.959);
     outline: none;
+    /*border: solid blue;*/
 }
 
-.listbut{
+.but{
     padding: 5px;
     text-align: center;
     margin: 0px;
@@ -30,12 +47,14 @@
     outline: none;
 }
 
-.listbut2{
-    float: right;
+.pass{
+    width:50%;
+    height: 50%;
     padding: 5px;
     text-align: center;
-    background-color: rgba(156, 206, 194, 0.959);
+    margin: 0px;
+    background-color: rgba(202, 240, 231, 0.959);
     border: solid rgba(202, 240, 231, 0.959);
     outline: none;
-    /*border: solid red;*/
+    /*border: solid purple;*/
 }
