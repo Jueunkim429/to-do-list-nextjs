@@ -6,7 +6,6 @@ import Router from "next/router";
 import { authService, dbService } from "../pages/fbase"
 
 const Todo= ({ refreshUser, userObj }) => {
-    //const history = useHistory();
     const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
