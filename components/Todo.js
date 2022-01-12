@@ -1,52 +1,142 @@
-import { useState } from "react";
-import Item from "./Item";
-import Form from "./Form";
-import { useToast, Box } from "@chakra-ui/react";
-import list from '../styles/todo.module.css'
+import { useEffect, useState } from "react";
+import formlist from '../styles/todo.module.css'
 import Image from 'next/image'
+import Item from "./Item";
+import { useHistory } from 'react-router-dom';
+import { authService, dbService } from "../pages/fbase"
 
+const Todo= ({ refreshUser, userObj }) => {
+    const history = useHistory();
+    const [nweet, setNweet] = useState("");
+    const [nweets, setNweets] = useState([]);
+    const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+    useEffect(() => {
+    dbService.collection("nweets").onSnapshot((snapshot) => {
+        const nweetArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setNweets(nweetArray);
+      });
+  }, []);
 
-export default function Todo() {
-  const [id, setId] = useState(0);
-  const [todoList, setTodoList] = useState([]);
-  const deleteToast = useToast();
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        await dbService.collection("nweets").add({
+          text: nweet,
+          createdAt: Date.now(),
+          creatorId: userObj.uid,
+          checked:false,
+        });
+        setNweet("");
+    };
 
-  const pushTodo = (value) => {
-    const todos = todoList;
-    const todo = { id, value };
-    setId((current) => current + 1);
-    todos.push(todo);
-    setTodoList(todos);
-  };
+    const onChange = (event) => {
+        const {
+          target: { value },
+        } = event;
+        setNweet(value);
+    };
+      
+    const onLogOutClick = () => {
+        authService.signOut()
+        history.push('/');
+    };
+      
+    const onChange2 = (event) => {
+        const {
+            target: {value},
+        } = event;
+        setNewDisplayName(value);
+    };
 
-  const deleteTodo = (index) => {
-    const todos = todoList.filter((todo, _index) => index !== _index);
-    setTodoList(todos);
-    deleteToast({
-      duration: 2500,
-      isClosable: true,
-      fontSize: 50,
-      render: () => (
-        <Box color="rgb(11, 11, 104)" p={7} bg="purple.300">
-          Delete Complete!
-        </Box>
-      ),
-    });
-  };
+    const onSubmit2 = async (event) => {
+      event.preventDefault();
+      if(userObj.displayName !== newDisplayName){
+          await userObj.updateProfile({
+              displayName: newDisplayName,
+          });
+          refreshUser();
+      }
+    };
+      
+    return (
+        <div>
+          <div className={formlist.flex}>
+          <form onSubmit={onSubmit2}>
+            <div className={formlist.namebox}>
+              <input
+              onChange={onChange2}
+              type="text"
+              autoFocus
+              placeholder="Display name"
+              value={newDisplayName}
+              className={formlist.name}
+              />
+              <input
+              type="submit"
+              value="Change Your ID"
+              className={formlist.namebut}
+              />
+            </div>
+          </form>
 
-  return (
-    <Box margin="2rem 8rem" padding="2rem 0" borderRadius="md">
-      <div className={list.listbox}>
-        <h1>My to do list</h1>
-        <Image
-          src="/images/photo1.gif"
-          height={144}
-          width={144}
-          alt="hi"
-        />
-      </div>
-      <Form pushTodo={pushTodo} />
-      <Item todoList={todoList} deleteTodo={deleteTodo} />
-    </Box>
+          <form onSubmit={onSubmit} >
+          <div className={formlist.mainbox}>
+            <h1>{userObj.displayName
+              ? `${userObj.displayName}'s To do list`
+              : "To do list"}</h1>
+            <Image
+              src="/images/photo1.gif"
+              height={144}
+              width={144}
+              alt="hi"
+            />
+            
+          </div>  
+          </form>
+          </div>
+          
+          <>
+          <span onClick={onLogOutClick} className={formlist.logoutbut}> 
+            Log Out
+          </span>
+          </>
+
+          <div>
+          <form onSubmit={onSubmit} className={formlist.listbox}>
+          <input 
+            type="text"
+            placeholder="Upload your list !!"
+            value={nweet}
+            onChange={onChange}
+            className={formlist.uploadtext}
+          />
+
+          <button 
+            type="submit"
+            className={formlist.uploadbut}>
+            Upload
+          </button>
+          </form>
+          </div>
+          <div>
+
+          <>
+            {nweets.map((nweet) => (
+                 <Item
+                    key={nweet.id}
+                    nweetObj={nweet}
+                    isOwner={nweet.creatorId === userObj.uid}
+               />
+              ))}
+            </>
+          </div>
+        </div>
+
+        
+
   );
-}
+};
+export default Todo;
+

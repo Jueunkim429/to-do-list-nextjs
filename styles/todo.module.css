@@ -1,5 +1,78 @@
-.listbox{
+.flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.namebox{
+    display: flex;
+    float: right;
+    /*border: solid blue;*/
+}
+
+.name{
+    width:150%;
+    padding: 5px;
+    text-align: right;
+    margin: 0px;
+    background-color: rgba(202, 240, 231, 0.959);
+    border: solid rgba(202, 240, 231, 0.959);
+    outline: none;
+}
+
+.namebut{
+    padding: 5px;
+    background-color: rgba(156, 206, 194, 0.959);
+    border: solid rgba(202, 240, 231, 0.959);
+    outline: none;
+}
+
+.mainbox{
     background-color: rgba(105, 218, 193, 0.959);
     text-align: center;
     color: rgb(11, 11, 104);
+    /*border: solid red;*/
+} 
+
+.logoutbut{
+    float: right;
+    padding: 5px;
+    background-color: rgba(156, 206, 194, 0.959);
+    border: solid rgba(202, 240, 231, 0.959);
+    outline: none;
+    /*border: solid blue;*/
 }
+
+.listbox{
+    width: 100%;
+    display: flex;
+    margin: 1rem 0;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 1px;
+    /*border: solid red;*/
+}
+
+.uploadtext{
+    /*border: solid red;*/
+    width:100%;
+    padding: 5px;
+    text-align: center;
+    margin: 0px;
+    background-color: rgba(202, 240, 231, 0.959);
+    border: solid rgba(202, 240, 231, 0.959);
+    outline: none;
+}
+
+.uploadbut{
+    padding: 5px;
+    text-align: center;
+    margin: 0px;
+    background-color: rgba(156, 206, 194, 0.959);
+    border: solid rgba(202, 240, 231, 0.959);
+    outline: none;
+}
+
+
+

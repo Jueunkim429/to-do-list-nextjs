@@ -1,31 +1,43 @@
 .todoItemBlock {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    height: fit-content;
-    margin: 2rem;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 1rem;
-   /*border: solid red;*/
-  }
-  .CheckBox{
-    display: inline-block;
-    margin-right: 1rem;
-    cursor: pointer;
-    transform: scale(1.5);
-  
-  }
-  .CheckLabel {
-    margin-right: 1rem;
-    cursor: pointer;
-    width: 90%;
- 
-  }
-  .DeleteButton {
-    cursor: pointer;
-    margin-right: 0px;
-    outline: none;
-    background-color: rgba(156, 206, 194, 0.959);
-    border: solid rgba(202, 240, 231, 0.959);
-    /*border: solid red;*/
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: fit-content;
+  margin: 2rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+ /*border: solid red;*/
+}
+
+.CheckBox{
+  display: inline-block;
+  margin-right: 10%;
+  /*cursor: pointer;*/
+  transform: scale(1.5);
+}
+
+.CheckLabel {
+  width: 90%;
+  display: inline-block;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-style: initial;
+  text-decoration: line-through;
+}
+
+.xxLabel {
+  width: 90%;
+  display: inline-block;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.DeleteButton {
+  cursor: pointer;
+  float: right;
+  outline: none;
+  background-color: rgba(156, 206, 194, 0.959);
+  border: solid rgba(202, 240, 231, 0.959);
+  /*border: solid red;*/
+}
