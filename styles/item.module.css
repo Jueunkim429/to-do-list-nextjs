@@ -11,7 +11,7 @@
   .CheckBox{
     display: inline-block;
     margin-right: 1rem;
-    cursor: pointer;
+    /*cursor: pointer;*/
     transform: scale(1.5);
   
   }

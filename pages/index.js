@@ -1,12 +1,13 @@
 import Head from 'next/head'
-import Todo from '../components/Todo'
+import App from '../components/App'
+
 
 
 export default function Home() {
   return (
     <>
       <Head />
-      <Todo />
+      <App />
     </>
   )
 }
