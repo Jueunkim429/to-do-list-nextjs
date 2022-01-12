@@ -64,6 +64,7 @@ export default function Item({nweetObj, isOwner  }) {
             height={50}
             width={50}
             className={itemlist.CheckBox}
+            alt='check'
           /> 
           <label className={itemlist.CheckLabel}>
         {nweetObj.text}
@@ -78,6 +79,7 @@ export default function Item({nweetObj, isOwner  }) {
           height={50}
           width={50}
           className={itemlist.CheckBox}
+          alt='x'
         />
         <label className={itemlist.xxLabel}>
        {nweetObj.text}
@@ -96,6 +98,7 @@ export default function Item({nweetObj, isOwner  }) {
           src="/images/trash.svg"
           height={50}
           width={50}
+          alt='trash'
         />
       </button>
 
