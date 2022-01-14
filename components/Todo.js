@@ -18,6 +18,7 @@ const Todo= ({ refreshUser, userObj }) => {
         setNweets(nweetArray);
       });
   }, []);
+
     const onSubmit = async (event) => {
         event.preventDefault();
         await dbService.collection("nweets").add({
@@ -25,6 +26,7 @@ const Todo= ({ refreshUser, userObj }) => {
           createdAt: Date.now(),
           creatorId: userObj.uid,
           checked:false,
+          userName:userObj.displayName,
         });
         setNweet("");
     };
@@ -126,6 +128,7 @@ const Todo= ({ refreshUser, userObj }) => {
                     key={nweet.id}
                     nweetObj={nweet}
                     isOwner={nweet.creatorId === userObj.uid}
+                    userObj={userObj}
                />
               ))}
             </>

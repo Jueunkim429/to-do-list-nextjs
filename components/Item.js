@@ -1,63 +1,44 @@
 import itemlist from '../styles/item.module.css'
 import Image from 'next/image'
-import { dbService} from '../pages/fbase';
-import { useState } from 'react';
+import { authService, dbService} from '../pages/fbase';
+import { useReducer, useState } from 'react';
+import Comment from './Comment';
 
-export default function Item({nweetObj, isOwner  }) {
-  const [checked, setChecked] = useState("");
+export default function Item({nweetObj, isOwner,userObj}) {
+  const [checked, setChecked] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
+
   const checkTodo = async(event) => {
+    if (isOwner) {
     setChecked(!checked);
     event.preventDefault();
     await dbService.doc(`nweets/${nweetObj.id}`).update({
       text: newNweet,
       checked:(!checked)
     });
-  };
-
-  const onDeleteClick = async () => {
-    const ok = window.confirm("Are you sure you want to delete this nweet?");
-    if (ok) {
-      await dbService.doc(`nweets/${nweetObj.id}`).delete();
+  }
+    else{
+      window.confirm("You don't have permission.");
     }
+  };
+  
+  const onDeleteClick = async () => {
+    if(isOwner){
+      const ok = window.confirm("Are you sure you want to delete this nweet?");
+      if (ok) {
+        await dbService.doc(`nweets/${nweetObj.id}`).delete();
+      }
+    }
+    else{
+      window.confirm("You don't have permission.");
+    }
+    
   };
 
   return (
-    /*<div className={itemlist.todoItemBlock}>
-      {isOwner ? (
-        <>
-      <input
-          type="checkbox"
-          onClick={checkTodo}
-          className={itemlist.CheckBox}
-        />
-
-        <label className={itemlist.CheckLabel}>
-        {nweetObj.text}
-        </label>
-        
-        <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
-        <Image
-          src="/images/trash.svg"
-          height={50}
-          width={50}
-        />
-        </button>
-        </>
-      ) : (
-        ''
-      )
-}
-    </div>
-    /<input
-          type="checkbox"
-          onClick={checkTodo}
-          className={itemlist.CheckBox}
-        />*/
     <div className={itemlist.todoItemBlock}>
-      <>
-          {checked ?(
-            <>
+     {nweetObj.checked ? (
+        <>
           <Image 
             onClick={checkTodo}
             src="/images/check.svg"
@@ -67,12 +48,11 @@ export default function Item({nweetObj, isOwner  }) {
             alt='check'
           /> 
           <label className={itemlist.CheckLabel}>
-        {nweetObj.text}
-      </label>
-      </>
-          
-          ): (
-            <>
+            {nweetObj.text} 
+          </label>
+        </>
+      ):(
+        <>
           <Image 
           onClick={checkTodo}
           src="/images/xxx.svg"
@@ -80,19 +60,19 @@ export default function Item({nweetObj, isOwner  }) {
           width={50}
           className={itemlist.CheckBox}
           alt='x'
-        />
-        <label className={itemlist.xxLabel}>
-       {nweetObj.text}
-     </label> 
+          />
+          <label className={itemlist.xxLabel}>
+            {nweetObj.text} 
+          </label> 
         </>
-        )}
-      </>
-
-
-      
-
-      
-        
+      )}
+      <div>
+        <h10>by {nweetObj.userName}</h10>
+      </div>
+      <div>
+        <Comment userObj={userObj}/>
+      </div>
+       
       <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
         <Image
           src="/images/trash.svg"
@@ -102,6 +82,17 @@ export default function Item({nweetObj, isOwner  }) {
         />
       </button>
 
+
     </div>
 );
 };
+/*{isOwner && (
+        <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
+          <Image
+            src="/images/trash.svg"
+            height={50}
+            width={50}
+            alt='trash'
+          />
+        </button>
+        )}*/
