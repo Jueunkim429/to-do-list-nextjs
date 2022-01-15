@@ -1,42 +1,51 @@
-import itemlist from '../styles/item.module.css'
+import comitemlist from '../styles/comitem.module.css'
 import Image from 'next/image'
 import { authService, dbService} from '../pages/fbase';
 import { useReducer, useState } from 'react';
+import Comment from './Comment';
 
-export default function ComItem({commentObj, isOwner,userObj}) {
+export default function ComItem({commentObj, isOwner,nweetObj}) {
   const [newComment, setNewComment] = useState(commentObj.text);
   
-  const onDeleteClick = async () => {
+  const onCommentDeleteClick = async (event) => {
     if(isOwner){
+      event.preventDefault();
       const ok = window.confirm("Are you sure you want to delete this nweet?");
       if (ok) {
-        await dbService.doc(`comments/${commentObj.id}`).delete();
+        await dbService.doc(`nweets/${nweetObj.id}`).collection("comments").doc(`${commentObj.id}`).delete();
       }
     }
     else{
       window.confirm("You don't have permission.");
     }
-    
   };
 
+
   return (
-    <div >
-     {commentObj.text} 
-      <div>
-        <h10>by {commentObj.userName}</h10>
-      </div>
-      
-       
-      <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
-        <Image
+    <div className={comitemlist.comment}>
+      <div className={comitemlist.commentItemBlock}>
+        <label className={comitemlist.CommentLabel}>
+          {commentObj.text} 
+        </label>
+
+        <div className={comitemlist.by}>
+          <p>by {commentObj.userName}</p>
+        </div>
+
+        <button className={comitemlist.DeleteButton} onClick={onCommentDeleteClick}>
+          <Image
           src="/images/trash.svg"
           height={50}
           width={50}
           alt='trash'
-        />
-      </button>
+          />
+        </button>
+      </div>
 
 
+      <div>
+        
+      </div>
     </div>
 );
 };

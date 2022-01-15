@@ -1,3 +1,8 @@
+.todo{
+  display: flex;
+  flex-direction: column;
+  /*border: solid black;*/
+}
 .todoItemBlock {
   display: flex;
   flex-direction: row;
@@ -5,8 +10,8 @@
   height: fit-content;
   margin: 2rem;
   background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 1rem;
- border: solid red;
+  /*border: solid red;*/
+  margin-bottom: 0;
 }
 
 .CheckBox{
@@ -33,6 +38,13 @@
   font-weight: bolder;
 }
 
+.by{
+  font-size: 15px;
+  display: inline-block; 
+  /*border: solid black;*/
+  white-space: nowrap;
+}
+
 .DeleteButton {
   cursor: pointer;
   float: right;
@@ -40,4 +52,13 @@
   background-color: rgba(156, 206, 194, 0.959);
   border: solid rgba(202, 240, 231, 0.959);
   /*border: solid red;*/
+}
+
+.commentBlock{
+  align-items: center;
+  height: fit-content;
+  margin: 2rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  /*border: solid red;*/
+  margin-top: 0;
 }

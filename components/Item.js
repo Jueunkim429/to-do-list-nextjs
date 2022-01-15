@@ -35,9 +35,9 @@ export default function Item({nweetObj, isOwner,userObj}) {
   };
 
   return (
-    <>
-    <div className={itemlist.todoItemBlock}>
-     {nweetObj.checked ? (
+    <div className={itemlist.todo}>
+      <div className={itemlist.todoItemBlock}>
+        {nweetObj.checked ? (
         <>
           <Image 
             onClick={checkTodo}
@@ -51,7 +51,7 @@ export default function Item({nweetObj, isOwner,userObj}) {
             {nweetObj.text} 
           </label>
         </>
-      ):(
+        ):(
         <>
           <Image 
           onClick={checkTodo}
@@ -65,50 +65,30 @@ export default function Item({nweetObj, isOwner,userObj}) {
             {nweetObj.text} 
           </label> 
         </>
-      )}
+        )}
 
-      <div>
-        <h10>by {nweetObj.userName}</h10>
-      </div>
+        <div className={itemlist.by}>
+          <p>by {nweetObj.userName}</p>
+        </div>
 
-      <div>
-        <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
-          <Image
-          src="/images/trash.svg"
-          height={50}
-          width={50}
-          alt='trash'
-          />
-        </button>
-      </div>
-      
-    </div>
-    <div>
- 
-      <Comment
-       userObj={userObj}
-       nweetObj={nweetObj}
-      />
- 
-      </div>
-    
-    </>
-    
-
- 
-    
-
-    
-    
-);
-};
-/*{isOwner && (
-        <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
-          <Image
+        <div>
+          <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
+            <Image
             src="/images/trash.svg"
             height={50}
             width={50}
             alt='trash'
-          />
-        </button>
-        )}*/
+            />
+          </button>
+        </div>
+      </div>
+
+      <div className={itemlist.commentBlock}>
+        <Comment
+          userObj={userObj}
+          nweetObj={nweetObj}
+        />
+      </div>
+    </div>         
+);
+};
