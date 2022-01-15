@@ -32,10 +32,10 @@ export default function Item({nweetObj, isOwner,userObj}) {
     else{
       window.confirm("You don't have permission.");
     }
-    
   };
 
   return (
+    <>
     <div className={itemlist.todoItemBlock}>
      {nweetObj.checked ? (
         <>
@@ -66,24 +66,40 @@ export default function Item({nweetObj, isOwner,userObj}) {
           </label> 
         </>
       )}
+
       <div>
         <h10>by {nweetObj.userName}</h10>
       </div>
+
       <div>
-        <Comment userObj={userObj}/>
-      </div>
-       
-      <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
-        <Image
+        <button className={itemlist.DeleteButton} onClick={onDeleteClick}>
+          <Image
           src="/images/trash.svg"
           height={50}
           width={50}
           alt='trash'
-        />
-      </button>
-
-
+          />
+        </button>
+      </div>
+      
     </div>
+    <div>
+ 
+      <Comment
+       userObj={userObj}
+       nweetObj={nweetObj}
+      />
+ 
+      </div>
+    
+    </>
+    
+
+ 
+    
+
+    
+    
 );
 };
 /*{isOwner && (

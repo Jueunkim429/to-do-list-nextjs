@@ -3,12 +3,13 @@ import formlist from '../styles/todo.module.css'
 import Image from 'next/image'
 import Item from "./Item";
 import Router from "next/router";
-import { authService, dbService } from "../pages/fbase"
+import { authService, dbService } from "../pages/fbase";
 
 const Todo= ({ refreshUser, userObj }) => {
     const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+    
     useEffect(() => {
     dbService.collection("nweets").onSnapshot((snapshot) => {
         const nweetArray = snapshot.docs.map((doc) => ({
@@ -27,10 +28,10 @@ const Todo= ({ refreshUser, userObj }) => {
           creatorId: userObj.uid,
           checked:false,
           userName:userObj.displayName,
-        });
+        })
         setNweet("");
     };
-
+    
     const onChange = (event) => {
         const {
           target: { value },
@@ -103,6 +104,7 @@ const Todo= ({ refreshUser, userObj }) => {
           </span>
           </>
 
+
           <div>
           <form onSubmit={onSubmit} className={formlist.listbox}>
           <input 
@@ -120,8 +122,8 @@ const Todo= ({ refreshUser, userObj }) => {
           </button>
           </form>
           </div>
-          <div>
 
+          <div>
           <>
             {nweets.map((nweet) => (
                  <Item
@@ -129,15 +131,15 @@ const Todo= ({ refreshUser, userObj }) => {
                     nweetObj={nweet}
                     isOwner={nweet.creatorId === userObj.uid}
                     userObj={userObj}
+                    
                />
               ))}
-            </>
+          </>
+          {nweet.number}
           </div>
         </div>
 
-        
-
-  );
-};
+  )
+}
 export default Todo;
 
