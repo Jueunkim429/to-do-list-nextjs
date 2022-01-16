@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import App from '../components/App'
-
-
+import App from "../pages/posts/App";
 
 export default function Home() {
   return (
