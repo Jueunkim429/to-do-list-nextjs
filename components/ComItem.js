@@ -5,8 +5,6 @@ import { useReducer, useState } from 'react';
 import Comment from './Comment';
 
 export default function ComItem({commentObj, isOwner,nweetObj}) {
-  const [newComment, setNewComment] = useState(commentObj.text);
-  
   const onCommentDeleteClick = async (event) => {
     if(isOwner){
       event.preventDefault();

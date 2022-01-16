@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import commentlist from '../styles/comment.module.css'
 import Image from 'next/image'
-import { authService, dbService} from "../pages/fbase"
+import { dbService } from "../pages/fbase"
 import ComItem from './ComItem';
 
 const Comment= ({ userObj,nweetObj }) => {

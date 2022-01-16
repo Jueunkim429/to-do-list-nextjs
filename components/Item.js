@@ -1,8 +1,8 @@
 import itemlist from '../styles/item.module.css'
 import Image from 'next/image'
-import { authService, dbService} from '../pages/fbase';
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
 import Comment from './Comment';
+import { dbService } from '../pages/fbase';
 
 export default function Item({nweetObj, isOwner,userObj}) {
   const [checked, setChecked] = useState(false);
