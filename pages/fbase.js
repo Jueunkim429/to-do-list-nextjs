@@ -3,6 +3,16 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
 
+//import firebase from 'firebase/compat/app';
+import 'firebase/analytics';
+import 'firebase/firestore';
+//import "firebase/compat/auth";
+import { initializeApp } from "firebase/app";
+//import "firebase/compat/firestore";
+//import "firebase/compat/storage";
+import "firebase/firestore"; 
+import "firebase/storage";
+
 const firebaseConfig = {
     apiKey: "AIzaSyAcpCnMDa5rJfh82tsESyx6dEt2vkXn658",
     authDomain: "to-do-list-nextjs.firebaseapp.com",
