@@ -133,7 +133,6 @@ const Todo= ({ refreshUser, userObj }) => {
                />
               ))}
           </>
-          {nweet.number}
           </div>
         </div>
 
