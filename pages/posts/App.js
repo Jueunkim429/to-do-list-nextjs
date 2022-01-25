@@ -1,3 +1,4 @@
+import { LoadingOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import AppRouter from '../../lib/Router';
 import { authService } from '../../src/fbase';
@@ -37,7 +38,7 @@ function App() {
         <AppRouter
         refreshUser={refreshUser} isLoggedIn={Boolean(userObj)} userObj={userObj} />
       ) : (
-        "Initializing..."
+        <LoadingOutlined />
       )}
     <footer>&copy; {new Date().getFullYear()} to-do-list</footer>
   </>
